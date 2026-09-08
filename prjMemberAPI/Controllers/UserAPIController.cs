@@ -25,7 +25,7 @@ namespace prjMemberAPI.Controllers
                     message = "Username already exists"
                 });
             }
-            if(await us.IsEmailExists(u.fEmail))
+            if (await us.IsEmailExists(u.fEmail))
             {
                 return BadRequest(new
                 {
@@ -46,9 +46,67 @@ namespace prjMemberAPI.Controllers
             await _context.SaveChangesAsync();
             return Ok(new
             {
-               
-              message = "Register success"
+                message = "Register success"
             });
         }
-    }
+        [HttpPost]
+        public async Task<IActionResult> Login(UserInfoDTO u)
+        {
+            UserServices us = new UserServices(_context);
+            ArgonServices ag = new ArgonServices();
+            if (u.UserName == null && u.Email == null)
+            {
+                return BadRequest(new
+                {
+                    message = "Username or email is required"
+                });
+            }
+            if (u.Email == null)
+            {
+                if (await us.IsUsernameExists(u.UserName))
+                {
+                    string pass = await us.GetPasswordByUsername(u.UserName);
+                    if (await ag.VerifyPassword(u.Password, pass))
+                    {
+                        return Ok(new
+                        {
+                            message = "Login success"
+                        });
+                    }
+                    else
+                    {
+                        return BadRequest(new
+                        {
+                            message = "Something went wrong,please try again"
+                        });
+                    }
+                }
+            }
+            else if (u.UserName == null)
+            {
+                if (await us.IsEmailExists(u.Email))
+                {
+                    string pass = await us.GetPasswordByEmail(u.Email);
+                    if (await ag.VerifyPassword(u.Password, pass))
+                    {
+                        return Ok(new
+                        {
+                            message = "Login success"
+                        });
+                    }
+                    else
+                    {
+                        return BadRequest(new
+                        {
+                            message = "Something went wrong,please try again"
+                        });
+                    }
+                }
+            }
+            return BadRequest(new
+            {
+                message = "Username or email is not exists"
+            });
+        }
+     }
 }

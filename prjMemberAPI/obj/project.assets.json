@@ -6326,23 +6326,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\a0938\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\a0938\\OneDrive\\桌面\\membertTest\\slnMemberAPI\\prjMemberAPI\\prjMemberAPI.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\slnMemberAPI\\prjMemberAPI\\prjMemberAPI.csproj",
       "projectName": "prjMemberAPI",
-      "projectPath": "C:\\Users\\a0938\\OneDrive\\桌面\\membertTest\\slnMemberAPI\\prjMemberAPI\\prjMemberAPI.csproj",
-      "packagesPath": "C:\\Users\\a0938\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\a0938\\OneDrive\\桌面\\membertTest\\slnMemberAPI\\prjMemberAPI\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\slnMemberAPI\\prjMemberAPI\\prjMemberAPI.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\slnMemberAPI\\prjMemberAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\a0938\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6351,7 +6351,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6420,7 +6419,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -6843,7 +6842,7 @@
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "message": "套件 'Microsoft.OpenApi' 2.0.0 具有已知的 高 嚴重性弱點，https://github.com/advisories/GHSA-v5pm-xwqc-g5wc。",
       "libraryId": "Microsoft.OpenApi",
       "targetGraphs": [
         "net10.0"
@@ -6853,7 +6852,7 @@
       "code": "NU1901",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'NuGet.Packaging' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
+      "message": "套件 'NuGet.Packaging' 6.12.1 具有已知的 低 嚴重性弱點，https://github.com/advisories/GHSA-g4vj-cjjj-v7hg。",
       "libraryId": "NuGet.Packaging",
       "targetGraphs": [
         "net10.0"
@@ -6863,7 +6862,7 @@
       "code": "NU1901",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'NuGet.Protocol' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
+      "message": "套件 'NuGet.Protocol' 6.12.1 具有已知的 低 嚴重性弱點，https://github.com/advisories/GHSA-g4vj-cjjj-v7hg。",
       "libraryId": "NuGet.Protocol",
       "targetGraphs": [
         "net10.0"

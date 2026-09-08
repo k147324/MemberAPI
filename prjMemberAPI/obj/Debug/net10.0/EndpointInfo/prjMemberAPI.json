@@ -22,17 +22,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterDTO"
+                "$ref": "#/components/schemas/UserInfoDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterDTO"
+                "$ref": "#/components/schemas/UserInfoDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserRegisterDTO"
+                "$ref": "#/components/schemas/UserInfoDTO"
               }
             }
           },
@@ -87,6 +87,20 @@
   },
   "components": {
     "schemas": {
+      "UserInfoDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
       "UserRegisterDTO": {
         "type": "object",
         "properties": {
