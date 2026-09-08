@@ -13,7 +13,7 @@ namespace prjMemberAPI.Controllers
         {
             _context = c;
         }
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(UserRegisterDTO u)
         {
             UserServices us = new UserServices(_context);
@@ -33,7 +33,7 @@ namespace prjMemberAPI.Controllers
                 });
             }
             string password = await ag.HashPassword(u.fPassword);
-            TUser user = new TUser();
+            /*TUser user = new TUser();
             user.FUsername = u.fUsername;
             user.FPassword = password;
             user.FEmail = u.fEmail;
@@ -43,7 +43,7 @@ namespace prjMemberAPI.Controllers
             user.FCreateTime = DateTime.Now;
             user.FIsAdmin = false;
             _context.TUsers.Add(user);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();*/
             return Ok(new
             {
                 message = "Register success"

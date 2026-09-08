@@ -19,6 +19,16 @@ namespace prjMemberAPI
             options.UseSqlServer(
              builder.Configuration.GetConnectionString("DefaultConnection")
             ));
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngular", policy =>
+                {
+                    policy
+                    .WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
@@ -34,7 +44,7 @@ namespace prjMemberAPI
 
             app.UseAuthorization();
 
-
+            app.UseCors("AllowAngular");
             app.MapControllers();
 
             app.Run();

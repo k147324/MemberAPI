@@ -1,5 +1,5 @@
 ﻿using prjMemberAPI.Models;
-
+using Microsoft.EntityFrameworkCore;
 namespace prjMemberAPI.Services
 {
     public class UserServices

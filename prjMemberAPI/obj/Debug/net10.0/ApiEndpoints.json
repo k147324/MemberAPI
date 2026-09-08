@@ -1,22 +1,6 @@
 [
   {
     "ContainingType": "prjMemberAPI.Controllers.UserAPIController",
-    "Method": "Register",
-    "RelativePath": "api/UserAPI",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "u",
-        "Type": "prjMemberAPI.Models.UserRegisterDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "prjMemberAPI.Controllers.UserAPIController",
     "Method": "Login",
     "RelativePath": "api/UserAPI",
     "HttpMethod": "POST",
@@ -26,6 +10,22 @@
       {
         "Name": "u",
         "Type": "prjMemberAPI.Models.UserInfoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "prjMemberAPI.Controllers.UserAPIController",
+    "Method": "Register",
+    "RelativePath": "api/UserAPI/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "u",
+        "Type": "prjMemberAPI.Models.UserRegisterDTO",
         "IsRequired": true
       }
     ],
