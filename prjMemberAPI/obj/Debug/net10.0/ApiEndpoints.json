@@ -2,7 +2,7 @@
   {
     "ContainingType": "prjMemberAPI.Controllers.UserAPIController",
     "Method": "Login",
-    "RelativePath": "api/UserAPI",
+    "RelativePath": "api/UserAPI/Login",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

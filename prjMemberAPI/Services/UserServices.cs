@@ -28,5 +28,15 @@ namespace prjMemberAPI.Services
             var user = await Task.Run(() => _db.TUsers.FirstOrDefault(u => u.FEmail == email));
             return user?.FPassword;
         }
+        public async Task<TUser> GetUserByUsername(string username)
+        {
+            var user = await Task.Run(() => _db.TUsers.FirstOrDefault(u => u.FUsername == username));
+            return user;
+        }
+        public async Task<TUser> GetUserByEmail(string email)
+        {
+            var user = await Task.Run(() => _db.TUsers.FirstOrDefault(u => u.FEmail == email));
+            return user;
+        }
     }
 }

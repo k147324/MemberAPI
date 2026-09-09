@@ -849,3 +849,5 @@ C:\Users\a0938\source\repos\MemberAPI\prjMemberAPI\obj\Debug\net10.0\refint\prjM
 C:\Users\a0938\source\repos\MemberAPI\prjMemberAPI\obj\Debug\net10.0\prjMemberAPI.pdb
 C:\Users\a0938\source\repos\MemberAPI\prjMemberAPI\obj\Debug\net10.0\prjMemberAPI.genruntimeconfig.cache
 C:\Users\a0938\source\repos\MemberAPI\prjMemberAPI\obj\Debug\net10.0\ref\prjMemberAPI.dll
+C:\Users\a0938\source\repos\MemberAPI\prjMemberAPI\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\a0938\source\repos\MemberAPI\prjMemberAPI\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll

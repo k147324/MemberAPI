@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("prjMemberAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bea9adf98f4b59ebe008991833c10dad64785418")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+42fab64dc6014b743a9aa4cbd97a859e9666d09c")]
 [assembly: System.Reflection.AssemblyProductAttribute("prjMemberAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("prjMemberAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

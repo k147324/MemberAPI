@@ -45,7 +45,7 @@
         }
       }
     },
-    "/api/UserAPI": {
+    "/api/UserAPI/Login": {
       "post": {
         "tags": [
           "UserAPI"
