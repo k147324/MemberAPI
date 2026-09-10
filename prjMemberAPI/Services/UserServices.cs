@@ -38,5 +38,22 @@ namespace prjMemberAPI.Services
             var user = await Task.Run(() => _db.TUsers.FirstOrDefault(u => u.FEmail == email));
             return user;
         }
+        public async void AddUser(UserRegisterDTO u, string password)
+        {
+            TUser user = new TUser{
+                FUsername = u.fUsername,
+                FPassword = password,
+                FEmail = u.fEmail,
+                FPhone = u.fPhone,
+                FAddress = u.fAddress,
+                FIdNum = u.fIdNum,
+                FCreateTime = DateTime.Now,
+                FIsAdmin = false
+            };
+
+            _db.TUsers.Add(user);
+            await _db.SaveChangesAsync();
+            
+        }
     }
 }

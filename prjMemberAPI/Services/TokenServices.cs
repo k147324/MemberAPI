@@ -16,7 +16,7 @@ namespace prjMemberAPI.Services
         }
         public async Task<string> GenerateToken(TUser u)
         {
-            
+
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
@@ -35,5 +35,8 @@ namespace prjMemberAPI.Services
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        public async void ValidateToken(TUser u) { 
+        }
+     
     }
 }

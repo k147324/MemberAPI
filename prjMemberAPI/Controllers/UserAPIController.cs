@@ -37,16 +37,7 @@ namespace prjMemberAPI.Controllers
             }
             string password = await ag.HashPassword(u.fPassword);
             TUser user = new TUser();
-            user.FUsername = u.fUsername;
-            user.FPassword = password;
-            user.FEmail = u.fEmail;
-            user.FPhone = u.fPhone;
-            user.FAddress = u.fAddress;
-            user.FIdNum = u.fIdNum;
-            user.FCreateTime = DateTime.Now;
-            user.FIsAdmin = false;
-            _context.TUsers.Add(user);
-            await _context.SaveChangesAsync();
+            us.AddUser(u, password);
             return Ok(new
             {
                 message = $"Register success,username:{u.fUsername},password:{password},email:{u.fEmail}"
@@ -58,7 +49,7 @@ namespace prjMemberAPI.Controllers
             
             UserServices us = new UserServices(_context);
             ArgonServices ag = new ArgonServices();
-            if (u.UserName == null && u.Email == null)
+            if (string.IsNullOrEmpty(u.UserName) && string.IsNullOrEmpty(u.Email))
             {
                 return BadRequest(new
                 {
@@ -66,7 +57,7 @@ namespace prjMemberAPI.Controllers
                 });
             }
             TUser? user = null;
-            if (u.Email == null)
+            if (string.IsNullOrEmpty(u.Email))
             {
                 if (!await us.IsUsernameExists(u.UserName))
                 {
@@ -81,7 +72,7 @@ namespace prjMemberAPI.Controllers
 
                 user = await us.GetUserByUsername(u.UserName);
             }
-            else if (u.UserName == null)
+            else if (string.IsNullOrEmpty(u.UserName))
             {
                 if (!await us.IsEmailExists(u.Email))
                 {
@@ -99,6 +90,10 @@ namespace prjMemberAPI.Controllers
             if (user == null)
             {
                 return BadRequest(new { message = "Username or email is not exists" });
+            }
+            if(user.FIsActive == false)
+            {
+                return BadRequest(new { message = "Account is not active" });
             }
             var token = _token.GenerateToken(user);
             return Ok(new
