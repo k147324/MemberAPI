@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NuGet.Common;
+using Org.BouncyCastle.Bcpg;
 using prjMemberAPI.Models;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,6 +12,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace prjMemberAPI.Services
 {
+
     public class TokenServices
     {
         private readonly tempdbContext _db;
@@ -19,6 +21,7 @@ namespace prjMemberAPI.Services
         {
             _db = db;
             _config = configuration;
+
         }
         //jwt TOKEN
         public async Task<string> GenerateToken(TUser u)
@@ -85,6 +88,16 @@ namespace prjMemberAPI.Services
         {
             record.FUsedAt = DateTime.UtcNow;
             await _db.SaveChangesAsync();
+        }
+        public TokenData GetTokenData(ClaimsPrincipal user)
+        {
+            return new TokenData
+            {
+                UserId = user.FindFirst(JwtRegisteredClaimNames.Sub)?.Value
+                         ?? user.FindFirst(ClaimTypes.NameIdentifier)?.Value,
+                UserName = user.FindFirst(ClaimTypes.Name)?.Value,
+                Roles = user.FindFirst(ClaimTypes.Role)?.Value
+            };
         }
     }
 }

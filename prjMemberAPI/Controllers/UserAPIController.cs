@@ -100,18 +100,27 @@ namespace prjMemberAPI.Controllers
                 return BadRequest(new { message = "Account is not active" });
             }
             var token = _token.GenerateToken(user);
+            Response.Cookies.Append("token", await token, new CookieOptions
+            {
+                HttpOnly=true,
+                Secure=true,
+                SameSite=SameSiteMode.None,
+                Expires=DateTime.UtcNow.AddMinutes(15),
+                Path="/"
+            });
             return Ok(new
             {
                 message = "Login success",
-                token = token
             });
         }
-        [Authorize]
+        
         [HttpGet("Test")]
+        [Authorize]
         public IActionResult Test()
         {
-
-            return Ok("驗證通過才看得到這個訊息");
+            var claims = User.Claims.Select(c => new { c.Type, c.Value });
+            TokenData data = _token.GetTokenData(User);
+            return Ok(data);
         }
      }
 }
