@@ -1137,3 +1137,6 @@ C:\Users\User\source\repos\MemberAPI\prjMemberAPI\obj\Debug\net10.0\refint\prjMe
 C:\Users\User\source\repos\MemberAPI\prjMemberAPI\obj\Debug\net10.0\prjMemberAPI.pdb
 C:\Users\User\source\repos\MemberAPI\prjMemberAPI\obj\Debug\net10.0\prjMemberAPI.genruntimeconfig.cache
 C:\Users\User\source\repos\MemberAPI\prjMemberAPI\obj\Debug\net10.0\ref\prjMemberAPI.dll
+C:\Users\a0938\source\repos\MemberAPI\prjMemberAPI\bin\Debug\net10.0\BouncyCastle.Cryptography.dll
+C:\Users\a0938\source\repos\MemberAPI\prjMemberAPI\bin\Debug\net10.0\MailKit.dll
+C:\Users\a0938\source\repos\MemberAPI\prjMemberAPI\bin\Debug\net10.0\MimeKit.dll

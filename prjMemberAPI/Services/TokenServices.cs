@@ -1,19 +1,26 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using NuGet.Common;
+using prjMemberAPI.Models;
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using prjMemberAPI.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace prjMemberAPI.Services
 {
     public class TokenServices
     {
+        private readonly tempdbContext _db;
         private readonly IConfiguration _config;
-        public TokenServices(IConfiguration configuration)
+        public TokenServices(IConfiguration configuration, tempdbContext db)
         {
+            _db = db;
             _config = configuration;
         }
+        //jwt TOKEN
         public async Task<string> GenerateToken(TUser u)
         {
 
@@ -35,8 +42,49 @@ namespace prjMemberAPI.Services
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-        public async void ValidateToken(TUser u) { 
+        public async Task<string> CreateTokenAsync(int userId, string type, TimeSpan validFor)
+        {
+            var bytes = new byte[32];
+            var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(bytes);
+            var token = Convert.ToHexString(bytes);
+
+            var record = new TEmailVerification
+            {
+                FUserId = userId,
+                FToken = token,
+                FType = type,
+                FExpireAt = DateTime.UtcNow.Add(validFor),
+                FCreatedAt = DateTime.UtcNow
+            };
+
+            _db.TEmailVerifications.Add(record);
+            await _db.SaveChangesAsync();
+
+            return token;
         }
-     
+        //other use token
+        public async Task<TEmailVerification> VerifyTokenAsync(string token, string expectedType)
+        {
+            var record = await _db.TEmailVerifications
+                .FirstOrDefaultAsync(t => t.FToken == token);
+
+            if (record == null)
+                throw new InvalidOperationException("無效的連結");
+            if (record.FUsedAt != null)
+                throw new InvalidOperationException("此連結已被使用過");
+            if (record.FExpireAt < DateTime.UtcNow)
+                throw new InvalidOperationException("連結已過期");
+            if (record.FType != expectedType)
+                throw new InvalidOperationException("連結類型不符");
+
+            return record;
+        }
+
+        public async Task MarkAsUsedAsync(TEmailVerification record)
+        {
+            record.FUsedAt = DateTime.UtcNow;
+            await _db.SaveChangesAsync();
+        }
     }
 }

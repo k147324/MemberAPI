@@ -45,8 +45,9 @@ namespace prjMemberAPI
                 {
                     policy
                     .WithOrigins("http://localhost:4200")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
                 });
             });
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -60,13 +61,12 @@ namespace prjMemberAPI
             {
                 app.MapOpenApi();
             }
-
+            app.UseCors("AllowAngular");
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseCors("AllowAngular");
             app.MapControllers();
 
             app.Run();

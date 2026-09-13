@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using prjMemberAPI.Models;
 using prjMemberAPI.Services;
 using System.Runtime.CompilerServices;
+using System.Security.Claims;
 namespace prjMemberAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -36,11 +38,13 @@ namespace prjMemberAPI.Controllers
                 });
             }
             string password = await ag.HashPassword(u.fPassword);
-            TUser user = new TUser();
-            us.AddUser(u, password);
+            TUser user=await us.AddUser(u, password);
+            var token = await _token.CreateTokenAsync(
+            user.FId, "EmailVerify", TimeSpan.FromHours(24));
+            var verifyUrl = Url.Action("VerifyEmail", "Account", new { token }, Request.Scheme);
             return Ok(new
             {
-                message = $"Register success,username:{u.fUsername},password:{password},email:{u.fEmail}"
+                message = $"            {u.fEmail},{verifyUrl}"
             });
         }
         [HttpPost("Login")]
@@ -101,6 +105,13 @@ namespace prjMemberAPI.Controllers
                 message = "Login success",
                 token = token
             });
+        }
+        [Authorize]
+        [HttpGet("Test")]
+        public IActionResult Test()
+        {
+
+            return Ok("驗證通過才看得到這個訊息");
         }
      }
 }

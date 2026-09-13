@@ -17,6 +17,8 @@ public partial class tempdbContext : DbContext
 
     public virtual DbSet<TApplyStatus> TApplyStatuses { get; set; }
 
+    public virtual DbSet<TEmailVerification> TEmailVerifications { get; set; }
+
     public virtual DbSet<TSeller> TSellers { get; set; }
 
     public virtual DbSet<TStatus> TStatuses { get; set; }
@@ -84,6 +86,38 @@ public partial class tempdbContext : DbContext
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("fApplyStatusName");
+        });
+
+        modelBuilder.Entity<TEmailVerification>(entity =>
+        {
+            entity.HasKey(e => e.FId).HasName("PK__tEmailVe__D9F8227C4B839768");
+
+            entity.ToTable("tEmailVerification");
+
+            entity.HasIndex(e => e.FToken, "UQ__tEmailVe__B1047326A825CB12").IsUnique();
+
+            entity.Property(e => e.FId).HasColumnName("fId");
+            entity.Property(e => e.FCreatedAt)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnName("fCreated_at");
+            entity.Property(e => e.FExpireAt).HasColumnName("fExpire_at");
+            entity.Property(e => e.FToken)
+                .IsRequired()
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("fToken");
+            entity.Property(e => e.FType)
+                .IsRequired()
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("fType");
+            entity.Property(e => e.FUsedAt).HasColumnName("fUsed at");
+            entity.Property(e => e.FUserId).HasColumnName("fUser_Id");
+
+            entity.HasOne(d => d.FUser).WithMany(p => p.TEmailVerifications)
+                .HasForeignKey(d => d.FUserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_EV_tUser");
         });
 
         modelBuilder.Entity<TSeller>(entity =>
@@ -172,7 +206,7 @@ public partial class tempdbContext : DbContext
                 .HasColumnName("fLastLogin");
             entity.Property(e => e.FPassword)
                 .IsRequired()
-                .HasMaxLength(20)
+                .IsUnicode(false)
                 .HasColumnName("fPassword");
             entity.Property(e => e.FPhone)
                 .IsRequired()

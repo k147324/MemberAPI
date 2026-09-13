@@ -9,8 +9,6 @@ public partial class TUser
 {
     public int FId { get; set; }
 
-    
-
     public string FUsername { get; set; }
 
     public string FPassword { get; set; }
@@ -34,6 +32,8 @@ public partial class TUser
     public DateTime? FLastLogin { get; set; }
 
     public virtual ICollection<TApply> TApplies { get; set; } = new List<TApply>();
+
+    public virtual ICollection<TEmailVerification> TEmailVerifications { get; set; } = new List<TEmailVerification>();
 
     public virtual ICollection<TSeller> TSellers { get; set; } = new List<TSeller>();
 }

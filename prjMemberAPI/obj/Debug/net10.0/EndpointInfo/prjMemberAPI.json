@@ -77,6 +77,18 @@
         }
       }
     },
+    "/api/UserAPI/Test": {
+      "get": {
+        "tags": [
+          "UserAPI"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -123,13 +135,22 @@
         "type": "object",
         "properties": {
           "email": {
-            "type": "string"
+            "type": [
+              "null",
+              "string"
+            ]
           },
           "userName": {
-            "type": "string"
+            "type": [
+              "null",
+              "string"
+            ]
           },
           "password": {
-            "type": "string"
+            "type": [
+              "null",
+              "string"
+            ]
           }
         }
       },
